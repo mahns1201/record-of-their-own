@@ -11,6 +11,10 @@ const ChannelDetail = () => {
     navigate(`/channel/${channelName}/record/create`);
   };
 
+  const onGoParticipantCreate = () => {
+    navigate(`/channel/${channelName}/participant/create`);
+  };
+
   const recordList = [
     "[3판 2선승제] | 안호림(승) vs 서민혁(패) | 승승 (2:0)",
     "[3판 2선승제] | 서민혁(승) vs 안호림(패) | 패승승 (2:1)",
@@ -45,8 +49,8 @@ const ChannelDetail = () => {
 
         <section>
           <div className="title-with-button">
-            <h2>참가자 리스트</h2>
-            <button>+</button>
+            <h2>참가자</h2>
+            <button onClick={onGoParticipantCreate}>+</button>
           </div>
 
           <div>

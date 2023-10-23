@@ -1,5 +1,5 @@
-#home {
-  .home-name {
+#channel-detail {
+  .channel-name {
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
@@ -13,13 +13,8 @@
     align-items: center;
   }
 
-  .chanel_list {
-    height: 100%;
-    ul {
-      li {
-        width: 100%;
-        cursor: pointer;
-      }
-    }
+  .side-by-side {
+    display: flex;
+    justify-content: space-between;
   }
 }

@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 
 const ChannelDetail = () => {
   const params = useParams();
   const { channelName } = params;
+
+  const navigate = useNavigate();
+
+  const onGoRecordCreate = () => {
+    navigate(`/channel/${channelName}/record/create`);
+  };
 
   const recordList = [
     "[3판 2선승제] | 안호림(승) vs 서민혁(패) | 승승 (2:0)",
@@ -19,29 +26,34 @@ const ChannelDetail = () => {
   ));
 
   return (
-    <div id="channel">
-      <h1>{channelName}</h1>
-      <section>
-        <div>
-          <h2>전적 히스토리</h2>
-          <button>+</button>
-        </div>
-
-        <div>
-          <ul>{Records}</ul>
-        </div>
+    <div id="channel-detail" className="contents">
+      <section className="channel-name">
+        <h1>{channelName}</h1>
       </section>
 
-      <section>
-        <div>
-          <h2>참가자 리스트</h2>
-          <button>+</button>
-        </div>
+      <div className="side-by-side">
+        <section>
+          <div className="title-with-button">
+            <h2>전적 히스토리</h2>
+            <button onClick={onGoRecordCreate}>+</button>
+          </div>
 
-        <div>
-          <ul>{Participants}</ul>
-        </div>
-      </section>
+          <div>
+            <ul>{Records}</ul>
+          </div>
+        </section>
+
+        <section>
+          <div className="title-with-button">
+            <h2>참가자 리스트</h2>
+            <button>+</button>
+          </div>
+
+          <div>
+            <ul>{Participants}</ul>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

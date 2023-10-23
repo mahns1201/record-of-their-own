@@ -6,6 +6,8 @@
 // pages
 @import "./pages/home/_home.scss";
 @import "./pages/channel/_channel-create.scss";
+@import "./pages/channel/_channel-detail.scss";
+@import "./pages/record/record-create.scss";
 
 body {
   margin: 0;
@@ -19,6 +21,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+h2 {
+  font-size: large;
 }
 
 img {

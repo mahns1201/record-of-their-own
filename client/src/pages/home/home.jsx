@@ -18,15 +18,21 @@ const Home = () => {
   ));
 
   return (
-    <div id="home">
-      <div className="title">
-        <h1>채널 리스트</h1>
-        <button onClick={onGoChannelCreate}>+</button>
-      </div>
+    <div id="home" className="contents">
+      <section className="home-name">
+        <h1>그들만의 전적 관리</h1>
+      </section>
 
-      <div className="chanel_list">
-        <ul onClick={onGoChannelDetail}>{Channels}</ul>
-      </div>
+      <section>
+        <div className="title-with-button">
+          <h2>채널 리스트</h2>
+          <button onClick={onGoChannelCreate}>+</button>
+        </div>
+
+        <div className="chanel_list">
+          <ul onClick={onGoChannelDetail}>{Channels}</ul>
+        </div>
+      </section>
     </div>
   );
 };

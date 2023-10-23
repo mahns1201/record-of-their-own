@@ -3,7 +3,9 @@ import Home from "./pages/home/home";
 const App = () => {
   return (
     <div className="App">
-      <Home />
+      <div className="contents">
+        <Home />
+      </div>
     </div>
   );
 };

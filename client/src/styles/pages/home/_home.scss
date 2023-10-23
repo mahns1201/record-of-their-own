@@ -1,13 +1,19 @@
 #home {
-  .top {
+  .title {
     display: flex;
-    gap: 20px;
-    width: 100%;
-    height: 600px;
-  }
-
-  .bottom {
+    gap: 10px;
     width: 100%;
     height: 100%;
+    align-items: center;
+  }
+
+  .chanel_list {
+    height: 100%;
+    ul {
+      li {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
   }
 }

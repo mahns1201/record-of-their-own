@@ -1,10 +1,25 @@
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const onGoChannelCreate = () => {
+    navigate("/channel/create");
+  };
 
   return (
     <div id="home">
-      <section className="top">섹션1</section>
-      <section className="bottom">섹션2</section>
+      <div className="title">
+        <h1>채널 리스트</h1>
+        <button onClick={onGoChannelCreate}>+</button>
+      </div>
+
+      <div className="chanel_list">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </div>
     </div>
   );
 };

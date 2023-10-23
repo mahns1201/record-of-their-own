@@ -7,6 +7,16 @@ const Home = () => {
     navigate("/channel/create");
   };
 
+  const onGoChannelDetail = (e) => {
+    const channelName = e.target.innerText;
+    navigate(`/channel/${channelName}`);
+  };
+
+  const channelList = ["짐승방스타리그", "들짐승스타리그"];
+  const Channels = channelList.map((channelName, index) => (
+    <li key={index}>{channelName}</li>
+  ));
+
   return (
     <div id="home">
       <div className="title">
@@ -15,10 +25,7 @@ const Home = () => {
       </div>
 
       <div className="chanel_list">
-        <ul>
-          <li>1</li>
-          <li>2</li>
-        </ul>
+        <ul onClick={onGoChannelDetail}>{Channels}</ul>
       </div>
     </div>
   );

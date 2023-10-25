@@ -3,6 +3,10 @@
 @import "./common/_variables.scss";
 @import "./common/layout";
 
+// components-navigation
+@import "./components/navigation/header.scss";
+@import "./components/navigation/footer.scss";
+
 // pages
 @import "./pages/home/_home.scss";
 @import "./pages/channel/_channel-create.scss";
@@ -24,12 +28,16 @@ code {
     monospace;
 }
 
+button {
+  cursor: pointer;
+}
+
 h1 {
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 h2 {
-  font-size: large;
+  font-size: x-large;
 }
 
 img {

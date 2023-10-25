@@ -5,6 +5,10 @@
     padding-bottom: 20px;
   }
 
+  .home-button {
+    display: flex;
+    justify-content: flex-end;
+  }
   .title-with-button {
     display: flex;
     gap: 10px;

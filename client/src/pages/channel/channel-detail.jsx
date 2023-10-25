@@ -7,6 +7,10 @@ const ChannelDetail = () => {
 
   const navigate = useNavigate();
 
+  const onGoHome = () => {
+    navigate(`/`);
+  };
+
   const onGoRecordCreate = () => {
     navigate(`/channel/${channelName}/record/create`);
   };
@@ -33,6 +37,10 @@ const ChannelDetail = () => {
     <div id="channel-detail" className="contents">
       <section className="channel-name">
         <h1>{channelName}</h1>
+      </section>
+
+      <section className="home-button">
+        <button onClick={onGoHome}>↩︎</button>
       </section>
 
       <div className="side-by-side">

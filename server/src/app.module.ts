@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChannelModule } from './channel/channel.module';
 import { ParticipantModule } from './participant/participant.module';
+import { RecordModule } from './record/record.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ParticipantModule } from './participant/participant.module';
     }),
     ChannelModule,
     ParticipantModule,
+    RecordModule,
   ],
   controllers: [],
   providers: [],

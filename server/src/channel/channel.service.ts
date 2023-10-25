@@ -10,19 +10,19 @@ export class ChannelService {
     private channelRepository: Repository<ChannelEntity>,
   ) {}
 
-  async findOne(id) {
+  async findOne(id): Promise<ChannelEntity> {
     const channel = await this.channelRepository.findOne({ where: { id } });
 
     return channel;
   }
 
-  async findMany() {
+  async findMany(): Promise<ChannelEntity[]> {
     const channels = await this.channelRepository.find();
 
     return channels;
   }
 
-  async create(input) {
+  async create(input): Promise<ChannelEntity> {
     const { name, password } = input;
 
     const newChannel = this.channelRepository.create({

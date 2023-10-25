@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChannelModule } from './channel/channel.module';
+import { ParticipantModule } from './participant/participant.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ChannelModule } from './channel/channel.module';
       }),
     }),
     ChannelModule,
+    ParticipantModule,
   ],
   controllers: [],
   providers: [],

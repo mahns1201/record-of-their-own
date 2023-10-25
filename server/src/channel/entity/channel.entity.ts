@@ -2,7 +2,7 @@ import { BaseEntity } from 'src/common/common.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
 
-@Entity({ name: 'repo' })
+@Entity({ name: 'channel' })
 export class ChannelEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

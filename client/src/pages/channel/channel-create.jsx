@@ -17,6 +17,9 @@ const ChannelCreate = () => {
   return (
     <div id="channel-create">
       <div className="container">
+        <div>
+          <h2>채널 생성</h2>
+        </div>
         <div className="input">
           <input id="channel-name" type="text" placeholder="채널명" />
           <input id="password" type="text" placeholder="비밀번호" />

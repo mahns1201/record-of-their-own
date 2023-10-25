@@ -22,6 +22,9 @@ const RecordCreate = () => {
   return (
     <div id="record-create">
       <div className="container">
+      <div>
+          <h2>전적 등록</h2>
+        </div>
         <div className="input">
           <input
             id="count-for-total-game"
@@ -39,7 +42,7 @@ const RecordCreate = () => {
         </div>
         <div className="button">
           <button onClick={onGoBack}>취소</button>
-          <button onClick={onRecordCreate}>생성</button>
+          <button onClick={onRecordCreate}>등록</button>
         </div>
       </div>
     </div>

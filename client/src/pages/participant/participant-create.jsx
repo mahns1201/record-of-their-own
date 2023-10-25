@@ -16,12 +16,15 @@ const ParticipantCreate = () => {
   return (
     <div id="participant-create">
       <div className="container">
+      <div>
+          <h2>참가자 등록</h2>
+        </div>
         <div className="input">
           <input id="participant" type="text" placeholder="참가자" />
         </div>
         <div className="button">
           <button onClick={onGoBack}>취소</button>
-          <button onClick={onChannelCreate}>추가</button>
+          <button onClick={onChannelCreate}>등록</button>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ export class ParticipantService {
   async findOne(id) {
     const participant = await this.participantRepository.findOne({
       where: { id },
+      relations: ['channel'],
     });
 
     return participant;

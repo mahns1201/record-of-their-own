@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const RecordCreate = () => {
@@ -22,7 +23,7 @@ const RecordCreate = () => {
   return (
     <div id="record-create">
       <div className="container">
-      <div>
+        <div>
           <h2>전적 등록</h2>
         </div>
         <div className="input">

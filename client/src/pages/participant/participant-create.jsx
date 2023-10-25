@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const ParticipantCreate = () => {
@@ -16,7 +17,7 @@ const ParticipantCreate = () => {
   return (
     <div id="participant-create">
       <div className="container">
-      <div>
+        <div>
           <h2>참가자 등록</h2>
         </div>
         <div className="input">

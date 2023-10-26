@@ -39,4 +39,15 @@ export class ChannelController {
 
     return result;
   }
+
+  @Post('join')
+  @HttpCode(HttpStatus.CREATED)
+  async join(@Body() input): Promise<object> {
+    const { id, password } = input;
+    const channel = await this.channelService.findOne(id);
+
+    const result = password === channel.password ? 'SUCCESS' : 'FAIL';
+
+    return { result };
+  }
 }

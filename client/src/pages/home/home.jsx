@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { findManyChannels } from "../../apis/channel.api";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,14 +9,24 @@ const Home = () => {
     navigate("/channel/create");
   };
 
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const channels = await findManyChannels();
+      setChannels(channels);
+    }
+
+    fetchData();
+  }, []);
+
   const onGoChannelDetail = (e) => {
     const channelName = e.target.innerText;
     navigate(`/channel/${channelName}`);
   };
 
-  const channelList = ["짐승방스타리그", "들짐승스타리그"];
-  const Channels = channelList.map((channelName, index) => (
-    <li key={index}>{channelName}</li>
+  const Channels = channels.map((channel, index) => (
+    <li key={index}>{channel.name}</li>
   ));
 
   return (

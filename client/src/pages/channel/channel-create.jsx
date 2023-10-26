@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { createChannel } from "../../apis/channel.api";
 
 const ChannelCreate = () => {
   const navigate = useNavigate();
@@ -8,11 +9,12 @@ const ChannelCreate = () => {
     navigate("/");
   };
 
-  const onChannelCreate = async () => {
+  const onCreateChannel = async () => {
     const channelName = document.querySelector("#channel-name").value;
     const password = document.querySelector("#password").value;
 
-    console.log(channelName, " | ", password);
+    await createChannel({ name: channelName, password });
+    navigate("/");
   };
 
   return (
@@ -27,7 +29,7 @@ const ChannelCreate = () => {
         </div>
         <div className="button">
           <button onClick={onCancel}>취소</button>
-          <button onClick={onChannelCreate}>생성</button>
+          <button onClick={onCreateChannel}>생성</button>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import ChannelCreate from "./pages/channel/channel-create";
 import ChannelDetail from "./pages/channel/channel-detail";
 import RecordCreate from "./pages/record/record-create";
 import ParticipantCreate from "./pages/participant/participant-create";
+import ChannelJoin from "./pages/channel/channel-join";
 
 const router = createBrowserRouter([
   {
@@ -18,15 +19,19 @@ const router = createBrowserRouter([
     element: <ChannelCreate />,
   },
   {
-    path: "/channel/:channelName",
+    path: "/channel/join/:channelId",
+    element: <ChannelJoin />,
+  },
+  {
+    path: "/channel/:channelId",
     element: <ChannelDetail />,
   },
   {
-    path: "/channel/:channelName/record/create",
+    path: "/channel/:channelId/record/create",
     element: <RecordCreate />,
   },
   {
-    path: "/channel/:channelName/participant/create",
+    path: "/channel/:channelId/participant/create",
     element: <ParticipantCreate />,
   },
 ]);

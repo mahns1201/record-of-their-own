@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { findManyChannels } from "../../apis/channel.api";
 
 const Home = () => {
@@ -20,13 +20,10 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const onGoChannelDetail = (e) => {
-    const channelName = e.target.innerText;
-    navigate(`/channel/${channelName}`);
-  };
-
   const Channels = channels.map((channel, index) => (
-    <li key={index}>{channel.name}</li>
+    <li key={index}>
+      <Link to={`/channel/join/${channel.id}`}>{channel.name}</Link>
+    </li>
   ));
 
   return (
@@ -42,7 +39,7 @@ const Home = () => {
         </div>
 
         <div className="chanel_list">
-          <ul onClick={onGoChannelDetail}>{Channels}</ul>
+          <ul>{Channels}</ul>
         </div>
       </section>
     </div>

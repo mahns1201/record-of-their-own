@@ -8,6 +8,8 @@ async function bootstrap() {
     logger: ['log', 'debug', 'warn', 'error'],
   });
 
+  app.enableCors();
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

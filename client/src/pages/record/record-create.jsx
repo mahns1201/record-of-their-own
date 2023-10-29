@@ -17,25 +17,12 @@ const RecordCreate = () => {
       "#count-for-total-game"
     ).value;
     const winGameCount = document.querySelector("#count-for-win").value;
-    const winner = document.querySelector("#winner").value;
-    const looser = document.querySelector("#looser").value;
+    const winnerId = document.querySelector("#winner").value;
+    const looserId = document.querySelector("#looser").value;
     const outcome = document.querySelector("#record").value;
-
-    console.log(channelId, totalGameCount, winGameCount, winner, looser, outcome);
-    // find winner.id
-    // find looser.id
-    
-    // {
-    //   "channelId": 2,
-    //   "winnerId": 1,
-    //   "looserId": 3,
-    //   "totalGameCount": 5,
-    //   "winGameCount": 3,
-    //   "outcome": "llwww"
-    // }
     
     await crateRecord({
-      channelId, totalGameCount, winGameCount, winner, looser, outcome
+      channelId, totalGameCount, winGameCount, winnerId, looserId, outcome
     });
     navigate(-1);
   };

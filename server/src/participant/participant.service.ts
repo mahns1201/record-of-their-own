@@ -25,6 +25,18 @@ export class ParticipantService {
     return participants;
   }
 
+  async findManyByChannelId(channelId) {
+    const participants = await this.participantRepository
+      .createQueryBuilder('participant')
+      .leftJoinAndSelect('participant.channel', 'channel')
+      .where('channel.id = :channelId', { channelId })
+      .getMany();
+
+    console.log(participants);
+
+    return participants;
+  }
+
   async create(input) {
     const { name, channel } = input;
 

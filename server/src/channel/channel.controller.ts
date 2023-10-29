@@ -45,19 +45,18 @@ export class ChannelController {
       records,
     );
 
-    console.log(JSON.stringify(map));
-
     for (const [participantId, v] of Object.entries(map)) {
       const input = {
         winCount: v.totalRecord.total.winCount || 0,
         looseCount: v.totalRecord.total.looseCount || 0,
         multiplePremisesWinCount: v.totalRecord.multiplePremise.winCount || 0,
-        multiplePremisesLooseCount: v.totalRecord.multiplePremise.winCount || 0,
+        multiplePremisesLooseCount: v.totalRecord.multiplePremise.looseCount || 0,
       };
 
       await this.participantService.syncParticipantRecord(participantId, input);
     }
 
+    Logger.debug(JSON.stringify(map));
     Logger.log(`[채널 ${id}] 참여자 정보가 정상적으로 갱신되었습니다.`);
 
     return {};

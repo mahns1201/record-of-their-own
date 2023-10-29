@@ -45,6 +45,8 @@ export class ChannelController {
       records,
     );
 
+    console.log(JSON.stringify(map));
+
     for (const [participantId, v] of Object.entries(map)) {
       const input = {
         winCount: v.totalRecord.total.winCount || 0,

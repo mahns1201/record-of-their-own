@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ChannelEntity } from './entity/channel.entity';
-import { Any, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { RecordMap } from 'src/common/common.type';
 
 @Injectable()
@@ -60,29 +60,31 @@ export class ChannelService {
       recordList.forEach((record) => {
         switch (participantId) {
           case record.winner.id:
-            map[participantId].totalRecord.total.winCount +=
-              record.outcome.match(/w/g)?.length;
+            {
+              map[participantId].totalRecord.total.winCount +=
+                record.outcome.match(/w/g)?.length || 0;
 
-            map[participantId].totalRecord.total.looseCount +=
-              record.outcome.match(/l/g)?.length;
+              map[participantId].totalRecord.total.looseCount +=
+                record.outcome.match(/l/g)?.length || 0;
 
-            if (record.totalGameCount !== 1) {
-              map[participantId].totalRecord.multiplePremise.winCount += 1;
+              if (record.totalGameCount !== 1) {
+                map[participantId].totalRecord.multiplePremise.winCount += 1;
+              }
             }
-
             break;
 
           case record.looser.id:
-            map[participantId].totalRecord.total.winCount +=
-              record.outcome.match(/l/g)?.length;
+            {
+              map[participantId].totalRecord.total.winCount +=
+                record.outcome.match(/l/g)?.length || 0;
 
-            map[participantId].totalRecord.total.looseCount +=
-              record.outcome.match(/w/g)?.length;
+              map[participantId].totalRecord.total.looseCount +=
+                record.outcome.match(/w/g)?.length || 0;
 
-            if (record.totalGameCount !== 1) {
-              map[participantId].totalRecord.multiplePremise.looseCount += 1;
+              if (record.totalGameCount !== 1) {
+                map[participantId].totalRecord.multiplePremise.looseCount += 1;
+              }
             }
-
             break;
 
           default:

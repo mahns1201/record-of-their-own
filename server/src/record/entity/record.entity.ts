@@ -15,7 +15,7 @@ export class RecordEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => ChannelEntity, (channel) => channel.id)
+  @ManyToOne(() => ChannelEntity, (channel) => channel.record)
   channel: ChannelEntity;
 
   @ManyToOne(() => ParticipantEntity, (participant) => participant.id)

@@ -32,8 +32,6 @@ export class ParticipantService {
       .where('channel.id = :channelId', { channelId })
       .getMany();
 
-    console.log(participants);
-
     return participants;
   }
 

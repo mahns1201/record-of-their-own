@@ -45,7 +45,6 @@ export const createChannel = (body) => {
 };
 
 export const joinChannel = (body) => {
-  console.log(`${url}/join`);
   return new Promise((resolve) => {
     fetch(`${url}/join`, {
       method: "POST",

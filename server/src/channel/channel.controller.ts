@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Logger,
   Param,
   Post,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { ParticipantEntity } from 'src/participant/entity/participant.entity';
 import { ParticipantService } from 'src/participant/participant.service';
 import { RecordService } from 'src/record/record.service';
 import { RecordEntity } from 'src/record/entity/record.entity';
+import { RecordMap } from 'src/common/common.type';
 
 @Controller('channel')
 export class ChannelController {
@@ -28,6 +30,35 @@ export class ChannelController {
     const result = await this.channelService.findMany();
 
     return result;
+  }
+
+  @Post('/:id/participants/sync-record')
+  @HttpCode(HttpStatus.OK)
+  async channelParticipantsSyncRecord(@Param() input) {
+    const { id } = input;
+
+    const participants = await this.participantService.findManyByChannelId(id);
+    const records = await this.recordService.findManyByChannelId(id);
+
+    const map: RecordMap = this.channelService.channelParticipantsSyncRecord(
+      participants,
+      records,
+    );
+
+    for (const [participantId, v] of Object.entries(map)) {
+      const input = {
+        winCount: v.totalRecord.total.winCount || 0,
+        looseCount: v.totalRecord.total.looseCount || 0,
+        multiplePremisesWinCount: v.totalRecord.multiplePremise.winCount || 0,
+        multiplePremisesLooseCount: v.totalRecord.multiplePremise.winCount || 0,
+      };
+
+      await this.participantService.syncParticipantRecord(participantId, input);
+    }
+
+    Logger.log(`[채널 ${id}] 참여자 정보가 정상적으로 갱신되었습니다.`);
+
+    return {};
   }
 
   @Get('/:id/participants')

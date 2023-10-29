@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ChannelEntity } from './entity/channel.entity';
-import { Repository } from 'typeorm';
+import { Any, Repository } from 'typeorm';
+import { RecordMap } from 'src/common/common.type';
 
 @Injectable()
 export class ChannelService {
@@ -33,5 +34,63 @@ export class ChannelService {
     const savedChannel = await this.channelRepository.save(newChannel);
 
     return savedChannel;
+  }
+
+  channelParticipantsSyncRecord(participantList, recordList) {
+    const map: RecordMap = {};
+
+    const participantIds = participantList.map((p) => {
+      map[p.id] = {
+        totalRecord: {
+          total: {
+            winCount: 0,
+            looseCount: 0,
+          },
+          multiplePremise: {
+            winCount: 0,
+            looseCount: 0,
+          },
+        },
+      };
+
+      return p.id;
+    });
+
+    participantIds.forEach((participantId) => {
+      recordList.forEach((record) => {
+        switch (participantId) {
+          case record.winner.id:
+            map[participantId].totalRecord.total.winCount +=
+              record.outcome.match(/w/g)?.length;
+
+            map[participantId].totalRecord.total.looseCount +=
+              record.outcome.match(/l/g)?.length;
+
+            if (record.totalGameCount !== 1) {
+              map[participantId].totalRecord.multiplePremise.winCount += 1;
+            }
+
+            break;
+
+          case record.looser.id:
+            map[participantId].totalRecord.total.winCount +=
+              record.outcome.match(/l/g)?.length;
+
+            map[participantId].totalRecord.total.looseCount +=
+              record.outcome.match(/w/g)?.length;
+
+            if (record.totalGameCount !== 1) {
+              map[participantId].totalRecord.multiplePremise.looseCount += 1;
+            }
+
+            break;
+
+          default:
+            break;
+        }
+      });
+    });
+
+    return map;
   }
 }

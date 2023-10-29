@@ -27,6 +27,19 @@ export class ParticipantController {
     return result;
   }
 
+  @Post('/:id/sync-record')
+  @HttpCode(HttpStatus.OK)
+  async syncParticipantRecord(@Param() paramInput, @Body() bodyInput) {
+    const { id } = paramInput;
+
+    const result = await this.participantService.syncParticipantRecord(
+      id,
+      bodyInput,
+    );
+
+    return result;
+  }
+
   @Get()
   @HttpCode(HttpStatus.OK)
   async findMany() {

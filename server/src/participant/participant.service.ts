@@ -19,6 +19,37 @@ export class ParticipantService {
     return participant;
   }
 
+  async syncParticipantRecord(id, input) {
+    const {
+      winCount,
+      looseCount,
+      multiplePremisesWinCount,
+      multiplePremisesLooseCount,
+    } = input;
+    const participant = await this.findOne(id);
+
+    // console.log(
+    //   participant,
+    //   winCount,
+    //   looseCount,
+    //   multiplePremisesWinCount,
+    //   multiplePremisesLooseCount,
+    // );
+
+    const newParticipant = {
+      ...participant,
+      winCount,
+      looseCount,
+      multiplePremisesWinCount,
+      multiplePremisesLooseCount,
+    };
+
+    const savedParticipant =
+      await this.participantRepository.save(newParticipant);
+
+    return savedParticipant;
+  }
+
   async findMany() {
     const participants = await this.participantRepository.find();
 

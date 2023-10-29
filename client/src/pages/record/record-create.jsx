@@ -1,7 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { crateRecord } from "../../apis/record.api";
 
 const RecordCreate = () => {
+  const params = useParams();
+  const { channelId } = params;
+
   const navigate = useNavigate();
 
   const onGoBack = () => {
@@ -9,15 +13,31 @@ const RecordCreate = () => {
   };
 
   const onRecordCreate = async () => {
-    const countForTotalGame = document.querySelector(
+    const totalGameCount = document.querySelector(
       "#count-for-total-game"
     ).value;
-    const countForWn = document.querySelector("#count-for-win").value;
+    const winGameCount = document.querySelector("#count-for-win").value;
     const winner = document.querySelector("#winner").value;
     const looser = document.querySelector("#looser").value;
-    const record = document.querySelector("#record").value;
+    const outcome = document.querySelector("#record").value;
 
-    console.log(countForTotalGame, countForWn, winner, looser, record);
+    console.log(channelId, totalGameCount, winGameCount, winner, looser, outcome);
+    // find winner.id
+    // find looser.id
+    
+    // {
+    //   "channelId": 2,
+    //   "winnerId": 1,
+    //   "looserId": 3,
+    //   "totalGameCount": 5,
+    //   "winGameCount": 3,
+    //   "outcome": "llwww"
+    // }
+    
+    await crateRecord({
+      channelId, totalGameCount, winGameCount, winner, looser, outcome
+    });
+    navigate(-1);
   };
 
   return (

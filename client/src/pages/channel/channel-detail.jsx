@@ -23,15 +23,10 @@ const ChannelDetail = () => {
       setChannel(channels);
       setParticipants(participants);
       setRecords(records);
-
-      console.log(records[0].winner.name);
     }
 
     fetchData();
   }, [channelId]);
-
-  console.log(records);
-  // 
 
   const onGoHome = () => {
     navigate(`/`);
@@ -46,7 +41,7 @@ const ChannelDetail = () => {
   };
 
   const Participants = participants.map((participant, index) => (
-    <li key={index}>{participant.name}</li>
+    <li key={index}>{participant.name} ({participant.id})</li>
   ));
 
   // "[5판 3선승제] | 서민혁(승) vs 안호림(패) | 패승승승 (3:1)",

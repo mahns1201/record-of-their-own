@@ -34,8 +34,6 @@ export class RecordService {
       .where('channel.id = :channelId', { channelId })
       .getMany();
 
-    console.log(records);
-
     return records;
   }
 

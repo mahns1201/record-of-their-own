@@ -29,6 +29,8 @@ export class RecordService {
     const records = await this.recordRepository
       .createQueryBuilder('record')
       .leftJoinAndSelect('record.channel', 'channel')
+      .leftJoinAndSelect('record.winner', 'winner')
+      .leftJoinAndSelect('record.looser', 'looser')
       .where('channel.id = :channelId', { channelId })
       .getMany();
 

@@ -11,12 +11,15 @@ import { ChannelService } from './channel.service';
 import { ChannelEntity } from './entity/channel.entity';
 import { ParticipantEntity } from 'src/participant/entity/participant.entity';
 import { ParticipantService } from 'src/participant/participant.service';
+import { RecordService } from 'src/record/record.service';
+import { RecordEntity } from 'src/record/entity/record.entity';
 
 @Controller('channel')
 export class ChannelController {
   constructor(
     private channelService: ChannelService,
     private participantService: ParticipantService,
+    private recordService: RecordService,
   ) {}
 
   @Get()
@@ -33,6 +36,16 @@ export class ChannelController {
     const { id } = input;
 
     const result = await this.participantService.findManyByChannelId(id);
+
+    return result;
+  }
+
+  @Get('/:id/records')
+  @HttpCode(HttpStatus.OK)
+  async findChannelRecords(@Param() input): Promise<RecordEntity[]> {
+    const { id } = input;
+
+    const result = await this.recordService.findManyByChannelId(id);
 
     return result;
   }

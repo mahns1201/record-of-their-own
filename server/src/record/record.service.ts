@@ -25,6 +25,18 @@ export class RecordService {
     return records;
   }
 
+  async findManyByChannelId(channelId) {
+    const records = await this.recordRepository
+      .createQueryBuilder('record')
+      .leftJoinAndSelect('record.channel', 'channel')
+      .where('channel.id = :channelId', { channelId })
+      .getMany();
+
+    console.log(records);
+
+    return records;
+  }
+
   async create(input): Promise<RecordEntity> {
     const { channel, winner, looser, totalGameCount, winGameCount, outcome } =
       input;

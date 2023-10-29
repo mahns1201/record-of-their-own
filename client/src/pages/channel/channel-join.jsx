@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  createChannel,
   findChannel,
   joinChannel,
 } from "../../apis/channel.api";
@@ -24,8 +23,8 @@ const ChannelJoin = () => {
     }
 
     fetchData();
-  }, []);
-
+  }, [channelId]);
+  
   const onJoinChannel = async () => {
     const password = document.querySelector("#password").value;
     const { result: joinResult } = await joinChannel({

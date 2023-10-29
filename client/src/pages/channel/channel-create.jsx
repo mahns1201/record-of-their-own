@@ -10,6 +10,7 @@ const ChannelCreate = () => {
   };
 
   const onCreateChannel = async () => {
+    console.log('!');
     const channelName = document.querySelector("#channel-name").value;
     const password = document.querySelector("#password").value;
 

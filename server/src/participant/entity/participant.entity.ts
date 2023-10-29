@@ -15,19 +15,19 @@ export class ParticipantEntity extends BaseEntity {
   @IsNotEmpty()
   name: string;
 
-  @Column()
+  @Column({ default: 0 })
   @IsOptional()
   winCount: number;
 
-  @Column()
+  @Column({ default: 0 })
   @IsOptional()
   looseCount: number;
 
-  @Column()
+  @Column({ default: 0 })
   @IsOptional()
   multiplePremisesWinCount: number;
 
-  @Column()
+  @Column({ default: 0 })
   @IsOptional()
   multiplePremisesLooseCount: number;
 }

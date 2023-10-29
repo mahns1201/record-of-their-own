@@ -13,6 +13,7 @@
 @import "./pages/channel/_channel-detail.scss";
 @import "./pages/record/_record-create.scss";
 @import "./pages/participant/_participant-create.scss";
+@import "./pages/participant/_participant-detail.scss";
 
 body {
   margin: 0;
@@ -38,6 +39,10 @@ h1 {
 
 h2 {
   font-size: x-large;
+}
+
+h3 {
+  font-size: large;
 }
 
 img {

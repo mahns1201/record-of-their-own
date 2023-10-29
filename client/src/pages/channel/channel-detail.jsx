@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
-import { findChannel, findManyChannelParticipants } from "../../apis/channel.api";
+import { findChannel, findManyChannelParticipants, findManyChannelRecords } from "../../apis/channel.api";
 
 const ChannelDetail = () => {
   const params = useParams();
@@ -12,18 +12,26 @@ const ChannelDetail = () => {
 
   const [channel, setChannel] = useState(0);
   const [participants, setParticipants] = useState([]);
+  const [records, setRecords] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const channels = await findChannel(channelId);
       const participants = await findManyChannelParticipants(channelId);
+      const records = await findManyChannelRecords(channelId);
       
       setChannel(channels);
       setParticipants(participants);
+      setRecords(records);
+
+      console.log(records[0].winner.name);
     }
 
     fetchData();
   }, [channelId]);
+
+  console.log(records);
+  // 
 
   const onGoHome = () => {
     navigate(`/`);
@@ -37,17 +45,16 @@ const ChannelDetail = () => {
     navigate(`/channel/${channelId}/participant/create`);
   };
 
-  const recordList = [
-    "[3판 2선승제] | 안호림(승) vs 서민혁(패) | 승승 (2:0)",
-    "[3판 2선승제] | 서민혁(승) vs 안호림(패) | 패승승 (2:1)",
-    "[5판 3선승제] | 서민혁(승) vs 안호림(패) | 패승승승 (3:1)",
-  ];
-  const Records = recordList.map((record, index) => (
-    <li key={index}>{record}</li>
-  ));
-
   const Participants = participants.map((participant, index) => (
     <li key={index}>{participant.name}</li>
+  ));
+
+  // "[5판 3선승제] | 서민혁(승) vs 안호림(패) | 패승승승 (3:1)",
+  // [{record.totalGameCount}판 {record.winGameCount}선승제] | {record.winner.name}(W) vs {record.looser}(L) | {record.outcome}
+  const Records = records.map((record, index) => (
+    <li key={index}>
+      [{record.totalGameCount}판 {record.winGameCount}선승제] | {record.winner.name}(W) vs {record.looser.name}(L) | {record.outcome.toUpperCase()}
+    </li>
   ));
 
   return (

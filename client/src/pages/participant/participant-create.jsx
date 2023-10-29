@@ -1,17 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { createParticipant } from "../../apis/participant.api";
 
 const ParticipantCreate = () => {
+  const params = useParams();
+  const { channelId } = params;
+
   const navigate = useNavigate();
 
   const onGoBack = () => {
     navigate(-1);
   };
 
-  const onChannelCreate = async () => {
+  const onParticipantCreate = async () => {
     const participant = document.querySelector("#participant").value;
 
-    console.log(participant);
+    await createParticipant({ name: participant, channelId });
+    navigate(-1);
   };
 
   return (
@@ -25,7 +30,7 @@ const ParticipantCreate = () => {
         </div>
         <div className="button">
           <button onClick={onGoBack}>취소</button>
-          <button onClick={onChannelCreate}>등록</button>
+          <button onClick={onParticipantCreate}>등록</button>
         </div>
       </div>
     </div>

@@ -28,7 +28,6 @@ export const findManyChannels = () => {
 };
 
 export const createChannel = (body) => {
-  console.log(url);
   return new Promise((resolve) => {
     fetch(url, {
       method: "POST",
@@ -60,5 +59,18 @@ export const joinChannel = (body) => {
         resolve(res);
       })
       .catch((error) => console.log("createChannel error: ", error.message));
+  });
+};
+
+export const findManyChannelParticipants = (channelId) => {
+  return new Promise((resolve) => {
+    fetch(`${url}/${channelId}/participants`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => console.log("findManyChannels error: ", error.message));
   });
 };

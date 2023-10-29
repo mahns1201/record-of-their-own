@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
-import { findChannel } from "../../apis/channel.api";
-import { findManyChannelParticipants } from "../../apis/participant.api";
+import { findChannel, findManyChannelParticipants } from "../../apis/channel.api";
 
 const ChannelDetail = () => {
   const params = useParams();
   const { channelId } = params;
+
   const navigate = useNavigate();
 
   const [channel, setChannel] = useState(0);

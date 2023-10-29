@@ -8,7 +8,7 @@ export class ParticipantEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => ChannelEntity, (channel) => channel.id)
+  @ManyToOne(() => ChannelEntity, (channel) => channel.participant)
   channel: ChannelEntity;
 
   @Column()

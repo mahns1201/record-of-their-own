@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { findChannel, findManyChannelParticipants, findManyChannelRecords } from "../../apis/channel.api";
 
@@ -41,7 +41,11 @@ const ChannelDetail = () => {
   };
 
   const Participants = participants.map((participant, index) => (
-    <li key={index}>{participant.name} ({participant.id})</li>
+    <li key={index}>
+      <Link to={`/channel/${channelId}/participant/${participant.id}`}>
+        {participant.name} ({participant.id})
+      </Link>
+    </li>
   ));
 
   // "[5판 3선승제] | 서민혁(승) vs 안호림(패) | 패승승승 (3:1)",

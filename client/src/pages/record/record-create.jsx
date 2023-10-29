@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { crateRecord } from "../../apis/record.api";
+import { syncChannelParticipantRecords } from "../../apis/channel.api";
 
 const RecordCreate = () => {
   const params = useParams();
@@ -24,6 +25,8 @@ const RecordCreate = () => {
     await crateRecord({
       channelId, totalGameCount, winGameCount, winnerId, looserId, outcome
     });
+    await syncChannelParticipantRecords(channelId);
+
     navigate(-1);
   };
 

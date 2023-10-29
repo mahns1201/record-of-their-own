@@ -40,12 +40,12 @@ const ParticipantDetail = () => {
         <h2>전체 전적</h2>
         <div>
           <h3>개별판</h3>
-          <span>{participant.winCount}승 {participant.looseCount}패 ({participant.winCount * 100 / (participant.winCount + participant.looseCount)}%)</span>
+          <span>{participant.winCount}승 {participant.looseCount}패 ({(participant.winCount * 100 / (participant.winCount + participant.looseCount)).toFixed(2)}%)</span>
         </div>
         
         <div>
           <h3>다전제</h3>
-          <span>{participant.multiplePremisesWinCount}승 {participant.multiplePremisesLooseCount}패 ({participant.multiplePremisesWinCount * 100 / (participant.multiplePremisesWinCount + participant.multiplePremisesLooseCount)}%)</span>
+          <span>{participant.multiplePremisesWinCount}승 {participant.multiplePremisesLooseCount}패 ({(participant.multiplePremisesWinCount * 100 / (participant.multiplePremisesWinCount + participant.multiplePremisesLooseCount)).toFixed(2)}%)</span>
         </div>
       </section>
 

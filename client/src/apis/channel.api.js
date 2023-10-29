@@ -86,3 +86,19 @@ export const findManyChannelRecords = (channelId) => {
       .catch((error) => console.log("findManyChannels error: ", error.message));
   });
 };
+
+export const syncChannelParticipantRecords = (channelId) => {
+  return new Promise((resolve) => {
+    fetch(`${url}/${channelId}/participants/sync-record`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => console.log("createChannel error: ", error.message));
+  });
+};

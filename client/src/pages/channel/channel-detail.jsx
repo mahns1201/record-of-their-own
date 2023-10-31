@@ -65,9 +65,9 @@ const ChannelDetail = () => {
       <section className="home-button">
         <button onClick={onGoHome}>↩︎</button>
       </section>
-
-      <div className="side-by-side">
-        <section>
+      
+      <section className="side-by-side">
+        <div>
           <div className="title-with-button">
             <h2>전적 히스토리</h2>
             <button onClick={onGoRecordCreate}>+</button>
@@ -76,9 +76,9 @@ const ChannelDetail = () => {
           <div>
             <ul>{Records}</ul>
           </div>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <div className="title-with-button">
             <h2>참가자</h2>
             <button onClick={onGoParticipantCreate}>+</button>
@@ -87,8 +87,8 @@ const ChannelDetail = () => {
           <div>
             <ul>{Participants}</ul>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 };

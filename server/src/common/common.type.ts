@@ -14,3 +14,11 @@ export interface RecordMap {
     totalRecord: Record;
   };
 }
+
+export interface relativeRecordMap {
+  [id: string]: {
+    relativeRecord: {
+      [relativeId: string]: Record;
+    };
+  };
+}

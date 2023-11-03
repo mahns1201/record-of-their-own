@@ -14,7 +14,7 @@ import { ParticipantEntity } from 'src/participant/entity/participant.entity';
 import { ParticipantService } from 'src/participant/participant.service';
 import { RecordService } from 'src/record/record.service';
 import { RecordEntity } from 'src/record/entity/record.entity';
-import { RecordMap } from 'src/common/common.type';
+import { RecordMap, relativeRecordMap } from 'src/common/common.type';
 
 @Controller('channel')
 export class ChannelController {
@@ -56,8 +56,16 @@ export class ChannelController {
       await this.participantService.syncParticipantRecord(participantId, input);
     }
 
-    Logger.debug(JSON.stringify(map));
-    Logger.log(`[채널 ${id}] 참여자 정보가 정상적으로 갱신되었습니다.`);
+    const relativeMap: relativeRecordMap =
+      this.channelService.channelParticipantsSyncRelativeRecord(
+        participants,
+        records,
+      );
+
+    console.log(JSON.stringify(relativeMap));
+
+    // Logger.debug(JSON.stringify(map));
+    // Logger.log(`[채널 ${id}] 참여자 정보가 정상적으로 갱신되었습니다.`);
 
     return {};
   }
